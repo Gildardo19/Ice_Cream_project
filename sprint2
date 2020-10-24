@@ -1,6 +1,7 @@
 # Gildardo Miguel
 # This program is used to pay for products through the system either for a large number of people or individual buyer
 # While giving an opportunity for the buyer to win a discount through catering
+# Jairo helped me space out the question and clarify all the if statements
 # (https://www.youtube.com/watch?v=myJ36xIR7Yg&ab_channel=GeekTutorials)
 def calculate_cost_of_cones_with_discount(cones):
     price = 1.25
@@ -23,19 +24,23 @@ def calculate_cost_of_cones_with_drinks(cones, drinks):
 
 def calculate_cost_of_just_cones(cones):
     price = 3.25
+    # Shortcut operator multiplies the price and input of cones
     price *= int(cones)
+    # return will Return the "price" when you calculate the cost of just cones
     return price
 
 
 def main():
-    print("Hello Welcome to Tohui Ice Cream! \n What is your name?")  # Tohui is the name of the Ice Cream Store
+    # Tohui is the name of the Ice Cream Store
+    print("Hello Welcome to Tohui Ice Cream! \n What is your name?")
     # customer's first input in the program with their name
     customer_name = input()
-
     # Starting a transaction
     print("Hi", customer_name, "its nice to meet you \n Would you like to buy some ice cream?")
 
-    customer_choice = input("a = Yes b= No\n")  # Jairo helped me space out the question and clarify all the if statements
+    customer_choice = input("a = Yes b= No\n")
+    # the while statement will run until the user enters the proper input
+    # Jairo helped me with this while statement
     while customer_choice != "a" and customer_choice != "b":
         print("invalid response")
         customer_choice = input("a = Yes b = No \n")
@@ -47,10 +52,16 @@ def main():
         print("Would you like to buy for Catering or Individually?")
         customer_choice = input("C = Catering D = Individually\n")
         # C=Catering
+        while customer_choice != "C" and customer_choice != "D":
+            print("Invalid Response")
+            customer_choice = input("C = Catering D = Individually \n")
         if customer_choice == "C":
             # Third split of the program
             print("How many cones would you like? \n We have 50 or 100 cones.")
             cones = input("A = 50 cone or B = 100 cones \n")
+            while cones != "A" and cones != "B":
+                print("Invalid Response")
+                cones = input("A = 50 cone or B = 100 cones \n")
             # 50 cones option
             if cones == "A":
                 print("How many people are in your party?")
@@ -91,7 +102,7 @@ def main():
                         # Question 2
                         print("What number do I need as a exponent to multiply 10 by to get 100?\n")
                         # if the first question is the correct it will proceed to this question
-                        # explain why its used 111111111111111111111111111111111111111111111111111111111111111111
+                        # The exponent will be used to get the power of 10
                         second_question = int(input("What x value for 10^x gives me 100? \n"))
                         # ** exponential used
                         b = 10 ** second_question
@@ -101,6 +112,7 @@ def main():
                             print("Win!" * 10, sep='')
                             # user has passed the quiz and discount price is applied
                             print("Congrats on your discount!")
+                            # def function is used to calculate the cost of cones with discount
                             discounted_price_of_50_cones = calculate_cost_of_cones_with_discount(cones)
                             print("Your total is: $" + format(discounted_price_of_50_cones, "0.2f"),
                                   "Thank you for shopping!")
@@ -131,6 +143,7 @@ def main():
                         regular_price_of_50_cones = calculate_cost_of_regular_price(cones)
                         print("Your total is: $" + format(regular_price_of_50_cones, "0.2f"), "Thank you for shopping!")
                         cash = input("Enter the amount of cash you want to pay with\n")
+                        # Subtraction is used to subtract cash to the price of cones
                         change = float(cash) - regular_price_of_50_cones
                         print("Your change will be: $" + format(change, "0.2f"), "\n Have a Nice Day", customer_name,
                               "Come Again!")
@@ -154,7 +167,7 @@ def main():
                 # Number of extra cones that will be left if uneven
                 left_over_cones = cones // int(people)
                 # Number of cones each person will get equally
-                # the symbol % will do ....
+                # the symbol % will find the remainder of cones by the number of people
                 number_cones_everyone_gets = cones % int(people)
                 print("There will be", number_cones_everyone_gets, "cones extra \n and every one will receive",
                       left_over_cones, "cones each")
@@ -166,9 +179,9 @@ def main():
 
                 # Yes is selected
                 if customer_choice == "a":
-                    print(
-                        "If there's 20 apples to share with a group of 5 friends how many apples do each friend get?\n "
-                        "What two numbers in this sentence can be divide to give each person 4 apples?")
+                    print("If there's 20 apples to share with a group of 5 friends how many apples do each friend "
+                          "get?\n "
+                          "What two numbers in this sentence can be divide to give each person 4 apples?")
                     # First number should be 20
                     first_num = int(input("First number\n"))
                     # Second number should be 5
