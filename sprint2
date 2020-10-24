@@ -1,0 +1,291 @@
+# Gildardo Miguel
+# This program is used to pay for products through the system either for a large number of people or individual buyer
+# While giving an opportunity for the buyer to win a discount through catering
+# (https://www.youtube.com/watch?v=myJ36xIR7Yg&ab_channel=GeekTutorials)
+def calculate_cost_of_cones_with_discount(cones):
+    price = 1.25
+    price_of_cones_with_discount = price * cones
+    return price_of_cones_with_discount
+
+
+def calculate_cost_of_regular_price(cones):
+    price = 3.00
+    price_of_cones_with_no_discount = price * cones
+    return price_of_cones_with_no_discount
+
+
+def calculate_cost_of_cones_with_drinks(cones, drinks):
+    price_per_cone = 3.25
+    price_per_drink = 2.50
+    price_of_cones_with_drinks = (price_per_cone * int(cones)) + (price_per_drink * int(drinks))
+    return price_of_cones_with_drinks
+
+
+def calculate_cost_of_just_cones(cones):
+    price = 3.25
+    price *= int(cones)
+    return price
+
+
+def main():
+    print("Hello Welcome to Tohui Ice Cream! \n What is your name?")  # Tohui is the name of the Ice Cream Store
+    # customer's first input in the program with their name
+    customer_name = input()
+
+    # Starting a transaction
+    print("Hi", customer_name, "its nice to meet you \n Would you like to buy some ice cream?")
+
+    customer_choice = input("a = Yes b= No\n")  # Jairo helped me space out the question and clarify all the if statements
+    while customer_choice != "a" and customer_choice != "b":
+        print("invalid response")
+        customer_choice = input("a = Yes b = No \n")
+
+    # First split of the program
+    # a=Yes
+    if customer_choice == "a":
+        # Second split of the program
+        print("Would you like to buy for Catering or Individually?")
+        customer_choice = input("C = Catering D = Individually\n")
+        # C=Catering
+        if customer_choice == "C":
+            # Third split of the program
+            print("How many cones would you like? \n We have 50 or 100 cones.")
+            cones = input("A = 50 cone or B = 100 cones \n")
+            # 50 cones option
+            if cones == "A":
+                print("How many people are in your party?")
+                # user enters number of people in the party
+                people = input("Enter the number of people \n")
+                cones = 50
+                # Number of extra cones that will be left if uneven
+                # //Floor division is used
+                left_over_cones = cones // int(people)
+                # Number of cones each person will get equally
+                # % Modulus used
+                cones_everyone_gets = cones % int(people)
+                print("There will be", cones_everyone_gets, "cones extra \n and every one will receive",
+                      left_over_cones,
+                      "cones each")  # used 2.x from repl.it example
+                print("The price is $3.00 per cone would you want to play a game for a chance to get \n each cone for "
+                      "$1.25 ?")
+                # Fourth split of the program
+                # Start a possibility for discount
+                customer_choice = input("a = Yes b= No\n")
+                # a= Yes
+                if customer_choice == "a":
+                    print(
+                        "If there's 20 apples to share with a group of 5 friends how many apples do each friend get?\n "
+                        "What two numbers in this sentence can be divided to give each person 4 apples?")
+                    # First number should be 20
+                    first_num = int(input("First number\n"))
+                    # Second number should be 5
+                    second_num = int(input("Second number\n"))
+                    answer = (first_num / second_num)
+                    print("Your answer is:", int(answer))
+                    # if the answer is right it will continue to question 2
+                    if answer == int(4):
+                        print("Correct!")
+                        print("Your half way there to your discount! Keep going!")
+                        print("\n")
+
+                        # Question 2
+                        print("What number do I need as a exponent to multiply 10 by to get 100?\n")
+                        # if the first question is the correct it will proceed to this question
+                        # explain why its used 111111111111111111111111111111111111111111111111111111111111111111
+                        second_question = int(input("What x value for 10^x gives me 100? \n"))
+                        # ** exponential used
+                        b = 10 ** second_question
+                        # correct answer
+                        if second_question == int(2):
+                            print("Correct")
+                            print("Win!" * 10, sep='')
+                            # user has passed the quiz and discount price is applied
+                            print("Congrats on your discount!")
+                            discounted_price_of_50_cones = calculate_cost_of_cones_with_discount(cones)
+                            print("Your total is: $" + format(discounted_price_of_50_cones, "0.2f"),
+                                  "Thank you for shopping!")
+                            cash = input("Enter the amount of cash you want to pay with\n")
+                            change = float(cash) - discounted_price_of_50_cones
+                            print("Your change will be: $" + format(change, "0.2f"), "\n Have a Nice Day",
+                                  customer_name,
+                                  "Come Again!")
+                            # end of program for 50 cones option and passed the quiz
+
+                        # if user got second question wrong discount is defaulted
+                        # regular price is applied
+                        else:
+                            print("Incorrect! Sorry you no longer qualify for the discount.")
+                            regular_price_of_50_cones = calculate_cost_of_regular_price(cones)
+                            print("Your total is: $" + format(regular_price_of_50_cones, "0.2f"),
+                                  "Thank you for shopping!")
+                            cash = input("Enter the amount of cash you want to pay with\n")
+                            change = float(cash) - regular_price_of_50_cones
+                            print("Your change will be: $" + format(change, "0.2f"), "\n Have a Nice Day",
+                                  customer_name,
+                                  "Come Again!")
+                        # end of 50 cones option end of program did NOT pass the quiz (missed second question)
+
+                    # if user got first question wrong discount is defaulted
+                    else:
+                        print("Incorrect! Sorry you no longer qualify for the discount.")
+                        regular_price_of_50_cones = calculate_cost_of_regular_price(cones)
+                        print("Your total is: $" + format(regular_price_of_50_cones, "0.2f"), "Thank you for shopping!")
+                        cash = input("Enter the amount of cash you want to pay with\n")
+                        change = float(cash) - regular_price_of_50_cones
+                        print("Your change will be: $" + format(change, "0.2f"), "\n Have a Nice Day", customer_name,
+                              "Come Again!")
+                        # end of 50 cones option end of program did not pass the quiz (missed the first question)
+
+
+                # Chooses no discount opportunity and will be applied full price
+                elif customer_choice == "b":
+                    regular_price_of_50_cones = calculate_cost_of_regular_price(cones)
+                    print("Your total is: $" + format(regular_price_of_50_cones, "0.2f"), "Thank you for shopping!")
+                    cash = input("Enter the amount of cash you want to pay with\n")
+                    change = float(cash) - regular_price_of_50_cones
+                    print("Your change will be: $" + format(change, "0.2f"), "\n Have a Nice Day", customer_name,
+                          "Come Again!")
+                # end of 50 cones option end of program did Not try the quiz
+            # start of 100 cones option
+            elif cones == "B":
+                print("How many people are in your party?")
+                people = input("Enter the number of people \n")
+                cones = 100
+                # Number of extra cones that will be left if uneven
+                left_over_cones = cones // int(people)
+                # Number of cones each person will get equally
+                # the symbol % will do ....
+                number_cones_everyone_gets = cones % int(people)
+                print("There will be", number_cones_everyone_gets, "cones extra \n and every one will receive",
+                      left_over_cones, "cones each")
+                print("The price is $3.00 per cone would you want to play a game for a chance to get \n each cone for "
+                      "$1.25 ?")
+                # introducing quiz for discount
+                # fourth split of the program
+                customer_choice = input("a = Yes b= No\n")
+
+                # Yes is selected
+                if customer_choice == "a":
+                    print(
+                        "If there's 20 apples to share with a group of 5 friends how many apples do each friend get?\n "
+                        "What two numbers in this sentence can be divide to give each person 4 apples?")
+                    # First number should be 20
+                    first_num = int(input("First number\n"))
+                    # Second number should be 5
+                    second_num = int(input("Second number\n"))
+                    answer = (first_num / second_num)
+                    print("Your answer is:", int(answer))
+                    if answer == int(4):
+                        print("Correct!")
+                        print("Your half way there to your discount! Keep going!")
+                        print("\n")
+                        # second question of quiz
+                        print("What number do I need as a exponent to multiply 10 by to get 100?\n")
+                        second_question = int(input("What x value for 10^x gives me 100? \n"))
+                        b = 10 ** second_question
+                        # user has won will be charged discounted price
+                        if second_question == int(2):
+                            print("Correct")
+                            print("Win" * 10)
+                            print("Congrats on your discount!")
+                            discounted_price_of_100_cones = calculate_cost_of_cones_with_discount(cones)
+                            print("discount price of cone is $" + format(discounted_price_of_100_cones, '.2f'))
+                            cash = input("Enter the amount of cash you want to pay with\n")
+                            change = float(cash) - discounted_price_of_100_cones
+                            print("Your change will be: $" + format(change, "0.2f"), "\n Have a Nice Day",
+                                  customer_name, "Come Again!")
+                        # end of the program 100 cones option passed quiz
+
+                        # second question wrong
+                        else:
+                            print("Incorrect! Sorry you no longer qualify for the discount.")
+                            regular_price_of_100_cones = calculate_cost_of_regular_price(cones)
+                            print("regular price of cone is $" + format(regular_price_of_100_cones, '.2f'))
+                            cash = input("Enter the amount of cash you want to pay with\n")
+                            change = float(cash) - regular_price_of_100_cones
+                            print("Your change will be: $" + format(change, "0.2f"), "\n Have a Nice Day",
+                                  customer_name,
+                                  "Come Again!")
+                        # end of 100 cones option end of program did not pass the quiz (missed the second question)
+
+                    # First question wrong charges full price
+                    else:
+                        answer != int(4)
+                        print("Incorrect! Sorry you no longer qualify for the discount.")
+                        regular_price_of_100_cones = calculate_cost_of_regular_price(cones)
+                        print("regular price of cone is $" + format(regular_price_of_100_cones, '.2f'))
+                        cash = input("Enter the amount of cash you want to pay with\n")
+                        change = float(cash) - regular_price_of_100_cones
+                        print("Your change will be: $" + format(change, "0.2f"), "\n Have a Nice Day", customer_name,
+                              "Come Again!")
+                        # end of 100 cones option end of program did not pass the quiz (missed the first question)
+        # Individual option
+
+        elif customer_choice == "D":
+            # Professor Vanselow , Jairo , Ryan , and Rachel helped me with building this list
+            # This part of the program enables a user to build a list based on the flavors they choose
+            # List that will be displayed
+            flavor_lst = ["Vanilla", "Chocolate", "Strawberry"]
+            # list that will be used to store user's pick
+            user_lst = []
+            print("We have these flavors available:", flavor_lst[0], flavor_lst[1], flavor_lst[2])
+            # Determine the amount of flavors the user will input
+            user_flavors = int(input("Enter number of flavors you would like : "))
+            # The for loop will take the input of the user
+            for flavor in range(user_flavors):
+                flavor_lst = input()
+                user_lst.append(flavor_lst)
+
+            print(user_lst)
+            if user_flavors == 1:
+                print("Basic")
+            elif user_flavors == 2:
+                if ("Vanilla" in user_lst or "vanilla" in user_lst) and ("Chocolate" not in user_lst):
+                    print("Pretty Neutral")
+                if "Chocolate" in user_lst:
+                    if "Vanilla" or "vanilla" not in user_lst:
+                        print("Zingy")
+
+            elif user_flavors == 3:
+                print("Neapolitan, Classy I like it! ")
+
+            print("How many cones would you like? Each cone is $3.25")
+            cones = input("Enter the amount of cones you would like. \n")
+            # def function of calculate cost of just cones
+            total_cost_just_cones = calculate_cost_of_just_cones(cones)
+            print("Your total so far is: $" + format(total_cost_just_cones, "0.2f"), "Would you like some drinks?")
+            drinks = input("A = Yes or B = No\n")
+
+            # Yes to drinks option
+            if drinks == "A":
+                print("How many drink would you like? each drink is $2.50")
+                drinks = input("Enter the amount of drinks you would like. \n")
+                total_cost_with_drinks_and_cones = calculate_cost_of_cones_with_drinks(cones, drinks)
+                if total_cost_with_drinks_and_cones >= 100:
+                    print("You're my favorite Customer!")
+                else:
+                    print("Sharing is caring, don't forget to buy grandma some!")
+                print("Your new total is: $" + format(total_cost_with_drinks_and_cones, "0.2f"),
+                      "Thank you for shopping!")
+                cash = input("Enter the amount of cash you want to pay with\n")
+                change = float(cash) - total_cost_with_drinks_and_cones
+                print("Your change will be: $" + format(change, "0.2f"), "\n Have a Nice Day", customer_name,
+                      "Come Again!")
+            # end of individual program with drink options
+
+            # No to drinks
+            elif drinks == "B":
+                print("Your total will be:$" + format(total_cost_just_cones, "0.2f"))
+                cash = input("Enter the amount of cash you want to pay with\n")
+                change = float(cash) - total_cost_just_cones
+                print("Your change will be: $" + format(change, "0.2f"), "\n Have a Nice Day", customer_name,
+                      "Come Again!")
+            # end of individual program with no drink option
+
+    # If user said no to buying ice cream
+    elif customer_choice == "b":
+        print("Have a Nice Day!\n", end='End of program')
+    # end of program
+
+
+main()
